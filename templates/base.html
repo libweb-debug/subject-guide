@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}학과별 주제가이드{% endblock %}</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+    <div class="site-container">
+
+        <header class="site-header">
+
+            <div class="guide-title-wrap">
+                <div class="guide-logo">
+                    <img src="/static/images/logo.png" alt="동아대학교">
+                </div>
+
+                <div>
+                    <h1 class="guide-title">{{ department_name }}</h1>
+
+                    <div class="breadcrumb">
+                        학과별 주제가이드
+                        <span>/</span>
+                        {{ department_name }}
+                        <span>/</span>
+                        {% block breadcrumb_page %}Home{% endblock %}
+                    </div>
+                </div>
+            </div>
+
+                <nav class="guide-nav">
+                    <a href="/guide/{{ department_slug }}/"
+                    class="{% block nav_home %}{% endblock %}">
+                        Home
+                    </a>
+
+                    <a href="/guide/{{ department_slug }}/book/"
+                    class="{% block nav_book %}{% endblock %}">
+                        도서
+                    </a>
+
+                    <a href="/guide/{{ department_slug }}/journal/"
+                    class="{% block nav_journal %}{% endblock %}">
+                        저널
+                    </a>
+
+                    <a href="/guide/{{ department_slug }}/database/"
+                    class="{% block nav_database %}{% endblock %}">
+                        데이터베이스
+                    </a>
+             </nav>
+
+        </header>
+
+        <main class="main-content">
+            {% block content %}
+            {% endblock %}
+        </main>
+
+    </div>
+
+</body>
+</html>

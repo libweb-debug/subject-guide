@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ department.department_name }} - 데이터베이스
+{% endblock %}
+
+{% block breadcrumb_page %}
+Database
+{% endblock %}
+
+{% block nav_database %}
+active
+{% endblock %}
+
+{% block content %}
+
+<div class="page-intro">
+    <p>
+        {{ department.department_name }} 분야의 주요 학술데이터베이스를 안내합니다.
+    </p>
+</div>
+
+
+<div class="database-layout">
+
+    <!-- 왼쪽 -->
+    <section class="content-card">
+
+        <h2>주요 국내 DB</h2>
+
+        <div class="database-list">
+
+            {% for db in domestic_databases %}
+
+            <article class="database-item">
+
+                <a
+                    class="database-title-row"
+                    href="{{ db.url }}"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    {% if db.logo %}
+                    <img
+                        class="database-logo"
+                        src="/static/images/databases/{{ db.logo }}"
+                        alt="{{ db.name }}"
+                    >
+                    {% endif %}
+
+                    <strong class="database-name">
+                        {{ db.name }}
+                    </strong>
+
+                </a>
+
+
+                {% if db.description %}
+                <p class="database-description">
+                    {{ db.description }}
+                </p>
+                {% endif %}
+
+
+                <dl class="database-meta">
+
+                    {% if db.subject %}
+                    <div>
+                        <dt>주제</dt>
+                        <dd>{{ db.subject }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if db.material_type %}
+                    <div>
+                        <dt>형태</dt>
+                        <dd>{{ db.material_type }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if db.coverage %}
+                    <div>
+                        <dt>범위</dt>
+                        <dd>{{ db.coverage }}</dd>
+                    </div>
+                    {% endif %}
+
+                </dl>
+
+            </article>
+
+            {% else %}
+
+            <p class="empty-message">
+                등록된 주요 국내 DB가 없습니다.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <!-- 오른쪽 -->
+    <section class="content-card">
+
+        <h2>전 주제 국외 DB</h2>
+
+        <div class="database-list">
+
+            {% for db in international_databases %}
+
+            <article class="database-item">
+
+                <a
+                    class="database-title-row"
+                    href="{{ db.url }}"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    {% if db.logo %}
+                    <img
+                        class="database-logo"
+                        src="/static/images/databases/{{ db.logo }}"
+                        alt="{{ db.name }}"
+                    >
+                    {% endif %}
+
+                    <strong class="database-name">
+                        {{ db.name }}
+                    </strong>
+
+                </a>
+
+
+                {% if db.description %}
+                <p class="database-description">
+                    {{ db.description }}
+                </p>
+                {% endif %}
+
+
+                <dl class="database-meta">
+
+                    {% if db.subject %}
+                    <div>
+                        <dt>주제</dt>
+                        <dd>{{ db.subject }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if db.material_type %}
+                    <div>
+                        <dt>형태</dt>
+                        <dd>{{ db.material_type }}</dd>
+                    </div>
+                    {% endif %}
+
+                    {% if db.coverage %}
+                    <div>
+                        <dt>범위</dt>
+                        <dd>{{ db.coverage }}</dd>
+                    </div>
+                    {% endif %}
+
+                </dl>
+
+            </article>
+
+            {% else %}
+
+            <p class="empty-message">
+                등록된 전 주제 국외 DB가 없습니다.
+            </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

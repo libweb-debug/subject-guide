@@ -1,0 +1,10 @@
+site_name: "동아대학교 학과별 주제가이드"
+
+library:
+  name: "동아대학교 도서관"
+  homepage: "https://library.donga.ac.kr"
+
+notice:
+  rss_url: "https://library.donga.ac.kr/blog/category/n-general-category/feed/"
+  detail_url: "https://library.donga.ac.kr/community/notice/?pid={post_id}"
+  count: 5

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ department.department_name }} 주제가이드
+{% endblock %}
+
+{% block breadcrumb_page %}
+Home
+{% endblock %}
+
+{% block nav_home %}
+active
+{% endblock %}
+
+{% block content %}
+
+<div class="home-grid">
+
+    <div class="home-column">
+
+        <section class="content-card">
+            <h2>학과 가이드 소개</h2>
+
+            <p>
+                {{ department.description }}
+            </p>
+        </section>
+
+
+        <section class="content-card">
+            <h2>도서관 공지사항</h2>
+
+            <ul class="notice-list">
+
+                {% for notice in notices %}
+                <li>
+                    <a
+                        href="{{ notice.url }}"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        {{ notice.title }}
+                    </a>
+
+                    <span>
+                        {{ notice.date }}
+                    </span>
+                </li>
+                {% endfor %}
+
+            </ul>
+        </section>
+
+    </div>
+
+
+    <div class="home-column">
+
+        <section class="content-card">
+            <h2>학과 홈페이지</h2>
+
+            <p>
+                {{ department.homepage_description }}
+            </p>
+
+            <a
+                class="primary-button"
+                href="{{ department.homepage_url }}"
+                target="_blank"
+                rel="noopener"
+            >
+                학과 홈페이지 바로가기
+            </a>
+        </section>
+
+
+        <section class="content-card">
+            <h2>담당사서</h2>
+
+            <div class="librarian-info">
+
+                <div class="librarian-avatar">
+                    사서
+                </div>
+
+                <div>
+                    <strong>
+                        {{ librarian.name }}
+                    </strong>
+
+                    <p>
+                        {{ librarian.description }}
+                    </p>
+
+                    <p class="librarian-contact">
+                        {{ librarian.library_department }}<br>
+                        {{ librarian.email }}<br>
+                        {{ librarian.phone }}
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+</div>
+
+{% endblock %}
