@@ -8,3 +8,7 @@ notice:
   rss_url: "https://library.donga.ac.kr/blog/category/n-general-category/feed/"
   detail_url: "https://library.donga.ac.kr/community/notice/?pid={post_id}"
   count: 5
+
+kci:
+  year: 2025
+  years: 2  

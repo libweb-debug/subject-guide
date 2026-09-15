@@ -9,7 +9,6 @@ from jinja2 import Environment, FileSystemLoader
 import os
 from dotenv import load_dotenv
 import xml.etree.ElementTree as ET
-
 import subprocess
 
 BASE_DIR = Path(__file__).parent
@@ -27,6 +26,22 @@ library_api_key = os.getenv("LIBRARY_API_KEY")
 if not library_api_key:
     raise RuntimeError("LIBRARY_API_KEY가 설정되어 있지 않습니다.")
 
+
+# --------------------------------------------------
+# 저널 관련 함수
+# --------------------------------------------------
+
+def make_library_journal_url(issn):
+    """ISSN으로 동아대학교 전자저널 검색 URL을 생성합니다."""
+    issn = str(issn or "").strip()
+
+    if not issn:
+        return ""
+
+    return (
+        "https://library.donga.ac.kr/resource/ejournals/"
+        f"?app=eds&mod=list&searchfield=isxn&query={issn}"
+    )
 # -------------------------
 # Google Sheets 연결
 # -------------------------
@@ -332,6 +347,23 @@ department_databases = load_sheet(spreadsheet, "department_databases")
 book_subjects = load_sheet(spreadsheet, "book_subjects")
 
 new_arrival_subjects = load_sheet(spreadsheet, "new_arrival_subjects")
+
+# --------------------------------------------------
+# 저널 URL 보강
+# --------------------------------------------------
+# Google Sheets의 url 값이 비어 있으면
+# ISSN을 이용해 동아대학교 전자저널 검색 URL을 자동 생성합니다.
+#
+# KCI IF / 등재정보는 update_kci.py에서
+# Google Sheets에 미리 저장하므로 여기서는 API를 호출하지 않습니다.
+# --------------------------------------------------
+
+for journal in journals:
+    if not str(journal.get("url", "")).strip():
+        journal["url"] = make_library_journal_url(
+            journal.get("issn")
+        )
+
 
 # ============================================================
 # 학과별 주제가이드 목록 페이지용 데이터 구성

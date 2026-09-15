@@ -104,9 +104,9 @@ active
                             {{ journal.title }}
                         </h3>
 
-                        {% if journal.kci_if %}
+                        {% if journal.kci_registration %}
                         <span class="kci-badge">
-                            KCI
+                            {{ journal.kci_registration }}
                         </span>
                         {% endif %}
 
@@ -133,6 +133,9 @@ active
                         <span>
                             <strong>KCI IF</strong>
                             {{ journal.kci_if }}
+                            {% if journal.kci_year %}
+                            ({{ journal.kci_year }})
+                            {% endif %}
                         </span>
                         {% endif %}
 
