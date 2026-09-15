@@ -1,15 +1,13 @@
+/* =========================================================
+   공통
+   ========================================================= */
+
 * {
     box-sizing: border-box;
 }
 
-
-/* -------------------------
-   기본
-------------------------- */
-
 body {
     margin: 0;
-
     font-family:
         -apple-system,
         BlinkMacSystemFont,
@@ -17,21 +15,25 @@ body {
         "Noto Sans KR",
         Arial,
         sans-serif;
-
     background: #f4f6f8;
     color: #202124;
 }
 
 .site-container {
+    width: 100%;
     max-width: 1140px;
     margin: 0 auto;
     padding: 24px 28px 60px;
 }
 
+.main-content {
+    width: 100%;
+}
 
-/* -------------------------
+
+/* =========================================================
    상단 영역
-------------------------- */
+   ========================================================= */
 
 .site-header {
     margin-bottom: 34px;
@@ -56,16 +58,13 @@ body {
 
 .guide-title {
     margin: 0;
-
     font-size: 26px;
     font-weight: 700;
-
     letter-spacing: -0.8px;
 }
 
 .breadcrumb {
     margin-top: 6px;
-
     font-size: 13px;
     color: #7b8490;
 }
@@ -75,78 +74,66 @@ body {
     color: #a0a6ad;
 }
 
+.breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+}
 
-/* -------------------------
+.breadcrumb a:hover {
+    color: #174e78;
+    text-decoration: underline;
+}
+
+
+/* =========================================================
    상단 탭 메뉴
-------------------------- */
+   ========================================================= */
 
 .guide-nav {
     display: flex;
     gap: 28px;
-
     margin-top: 32px;
-
     border-bottom: 1px solid #d9dde2;
 }
 
 .guide-nav a {
     position: relative;
-
     display: inline-block;
-
     padding: 12px 2px 14px;
-
     font-size: 16px;
     font-weight: 600;
-
     color: #4d5966;
-
     text-decoration: none;
 }
 
-.guide-nav a:hover {
-    color: #174e78;
-}
-
+.guide-nav a:hover,
 .guide-nav a.active {
     color: #174e78;
 }
 
 .guide-nav a.active::after {
     content: "";
-
     position: absolute;
-
     left: 0;
     right: 0;
     bottom: -1px;
-
     height: 3px;
-
     background: #174e78;
-
     border-radius: 3px 3px 0 0;
 }
 
 
-/* -------------------------
-   본문 공통
-------------------------- */
+/* =========================================================
+   공통 본문 / 카드
+   ========================================================= */
 
-.main-content {
-    width: 100%;
-}
-
-.content-section {
+.content-section,
+.content-card {
     background: #ffffff;
-
     border: 1px solid #e4e7eb;
     border-radius: 14px;
-
     padding: 24px;
-
-    box-shadow:
-        0 4px 16px rgba(0, 0, 0, 0.035);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.035);
 }
 
 .content-section h2 {
@@ -154,30 +141,11 @@ body {
     font-size: 20px;
 }
 
-
-/* -------------------------
-   공통 카드
-------------------------- */
-
-.content-card {
-    background: #ffffff;
-
-    border: 1px solid #e4e7eb;
-    border-radius: 14px;
-
-    padding: 24px;
-
-    box-shadow:
-        0 4px 16px rgba(0, 0, 0, 0.035);
-}
-
 .content-card h2 {
     margin: 0 0 18px;
     padding-bottom: 14px;
-
     font-size: 19px;
     font-weight: 700;
-
     border-bottom: 1px solid #e5e8eb;
 }
 
@@ -186,20 +154,34 @@ body {
     color: #4f5964;
 }
 
+.page-intro {
+    margin-bottom: 20px;
+}
 
-/* -------------------------
+.page-intro p {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.6;
+    color: #202124;
+}
+
+.empty-message {
+    grid-column: 1 / -1;
+    margin: 0;
+    color: #7a838d;
+}
+
+
+/* =========================================================
    Home
-------------------------- */
+   ========================================================= */
 
 .home-grid {
     display: grid;
-
     grid-template-columns:
         minmax(0, 1fr)
         minmax(0, 1fr);
-
     gap: 28px;
-
     align-items: start;
 }
 
@@ -210,25 +192,19 @@ body {
 }
 
 
-/* -------------------------
-   공지사항
-------------------------- */
+/* 공지사항 */
 
 .notice-list {
     list-style: none;
-
     margin: 0;
     padding: 0;
 }
 
 .notice-list li {
     display: flex;
-
     justify-content: space-between;
     gap: 20px;
-
     padding: 12px 0;
-
     border-bottom: 1px solid #edf0f2;
 }
 
@@ -247,30 +223,21 @@ body {
 
 .notice-list span {
     flex-shrink: 0;
-
     font-size: 13px;
     color: #929aa3;
 }
 
 
-/* -------------------------
-   버튼
-------------------------- */
+/* 버튼 */
 
 .primary-button {
     display: inline-block;
-
     margin-top: 8px;
-
     padding: 11px 18px;
-
     background: #173f63;
     color: #ffffff;
-
     border-radius: 8px;
-
     font-weight: 600;
-
     text-decoration: none;
 }
 
@@ -279,32 +246,22 @@ body {
 }
 
 
-/* -------------------------
-   담당사서
-------------------------- */
+/* 담당사서 */
 
 .librarian-info {
     display: flex;
-
     gap: 18px;
-
     align-items: flex-start;
 }
 
 .librarian-avatar {
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     flex: 0 0 64px;
-
     height: 64px;
-
     border-radius: 50%;
-
     background: #eef3f7;
-
     color: #174e78;
     font-weight: 700;
 }
@@ -319,37 +276,16 @@ body {
 }
 
 
-/* -------------------------
-   저널 페이지 소개
-------------------------- */
-
-.page-intro {
-    margin-bottom: 20px;
-}
-
-.page-intro p {
-    margin: 0;
-
-    font-size: 20px;
-    line-height: 1.6;
-
-    color: #202124;
-}
-
-
-/* -------------------------
-   저널 페이지 레이아웃
-------------------------- */
+/* =========================================================
+   Journal
+   ========================================================= */
 
 .journal-layout {
     display: grid;
-
     grid-template-columns:
         minmax(0, 1fr)
         minmax(0, 1fr);
-
     gap: 44px;
-
     align-items: start;
 }
 
@@ -357,14 +293,11 @@ body {
 .journal-right {
     display: flex;
     flex-direction: column;
-
     gap: 28px;
 }
 
 
-/* -------------------------
-   저널 검색
-------------------------- */
+/* 저널 검색 */
 
 .journal-search-card {
     min-height: 165px;
@@ -372,33 +305,24 @@ body {
 
 .card-description {
     margin: 0 0 16px;
-
     font-size: 14px;
     color: #68737e;
 }
 
 .journal-search-form {
     display: flex;
-
     width: 100%;
 }
 
 .journal-search-form input[type="text"] {
     flex: 1;
-
     min-width: 0;
-
     padding: 13px 14px;
-
     border: 1px solid #cfd6dd;
     border-right: 0;
-
     border-radius: 8px 0 0 8px;
-
     background: #ffffff;
-
     font-size: 14px;
-
     outline: none;
 }
 
@@ -408,17 +332,12 @@ body {
 
 .journal-search-form button {
     flex: 0 0 72px;
-
     border: 0;
-
     border-radius: 0 8px 8px 0;
-
     background: #173f63;
     color: #ffffff;
-
     font-size: 14px;
     font-weight: 600;
-
     cursor: pointer;
 }
 
@@ -427,33 +346,24 @@ body {
 }
 
 
-/* -------------------------
-   저널 카드 그리드
-------------------------- */
+/* 저널 카드 */
 
 .journal-card-grid {
     display: grid;
-
     grid-template-columns:
         repeat(2, minmax(0, 1fr));
-
     gap: 14px;
 }
 
 .journal-card {
     display: block;
-
+    min-width: 0;
     padding: 17px 16px;
-
     background: #ffffff;
-
     border: 1px solid #dfe5ea;
     border-radius: 11px;
-
     color: inherit;
-
     text-decoration: none;
-
     transition:
         border-color 0.15s ease,
         box-shadow 0.15s ease,
@@ -462,185 +372,76 @@ body {
 
 .journal-card:hover {
     border-color: #b9c8d4;
-
-    box-shadow:
-        0 5px 14px rgba(0, 0, 0, 0.05);
-
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.05);
     transform: translateY(-1px);
 }
 
 .journal-card-header {
     display: flex;
-
     align-items: flex-start;
     justify-content: space-between;
-
     gap: 10px;
 }
 
 .journal-card h3 {
     margin: 0;
-
     font-size: 16px;
     line-height: 1.45;
-
     color: #124d7b;
 }
 
 .journal-publisher {
     margin: 12px 0 10px;
-
     font-size: 13px;
-
     color: #68737e;
 }
 
 .journal-meta {
     display: flex;
-
     flex-wrap: wrap;
-
     gap: 8px 16px;
-
     font-size: 12px;
-
     color: #8a939c;
 }
 
 .journal-meta strong {
     margin-right: 4px;
-
     color: #4d5966;
 }
 
-
-/* -------------------------
-   KCI 배지
-------------------------- */
-
 .kci-badge {
     flex-shrink: 0;
-
     padding: 4px 8px;
-
     border-radius: 999px;
-
     background: #edf4fa;
-
     font-size: 12px;
     font-weight: 700;
-
     color: #174e78;
 }
 
 
-/* -------------------------
-   빈 데이터 안내
-------------------------- */
-
-.empty-message {
-    grid-column: 1 / -1;
-
-    margin: 0;
-
-    color: #7a838d;
-}
-
-
-/* -------------------------
-   반응형
-------------------------- */
-
-@media (max-width: 900px) {
-
-    .journal-layout,
-    .database-layout {
-        grid-template-columns: 1fr;
-
-        gap: 28px;
-    }
-
-}
-
-
-@media (max-width: 820px) {
-
-    .home-grid {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-
-@media (max-width: 768px) {
-
-    .site-container {
-        padding: 20px 18px 40px;
-    }
-
-    .guide-title-wrap {
-        align-items: flex-start;
-    }
-
-    .guide-logo {
-        width: 42px;
-    }
-
-    .guide-logo img {
-        width: 42px;
-    }
-
-    .guide-title {
-        font-size: 22px;
-    }
-
-    .guide-nav {
-        gap: 18px;
-
-        overflow-x: auto;
-    }
-
-    .guide-nav a {
-        white-space: nowrap;
-    }
-
-}
-
-
-@media (max-width: 620px) {
-
-    .journal-card-grid {
-        grid-template-columns: 1fr;
-    }
-
-}
-
-/* -------------------------
-   Database Page
-------------------------- */
+/* =========================================================
+   Database
+   ========================================================= */
 
 .database-layout {
     display: grid;
-
     grid-template-columns:
         minmax(0, 1fr)
         minmax(0, 1fr);
-
     gap: 52px;
-
     align-items: start;
 }
-
 
 .database-list {
     display: flex;
     flex-direction: column;
+    min-width: 0;
 }
 
-
 .database-item {
+    min-width: 0;
     padding: 14px 0 20px;
-
     border-bottom: 1px solid #e5e8eb;
 }
 
@@ -653,92 +454,265 @@ body {
     border-bottom: 0;
 }
 
-
 .database-title-row {
     display: flex;
-
     align-items: center;
-
     gap: 14px;
-
-    width: fit-content;
-
+    max-width: 100%;
     color: #124d7b;
-
     text-decoration: none;
 }
-
 
 .database-title-row:hover .database-name {
     text-decoration: underline;
 }
 
-
 .database-logo {
     display: block;
-
+    flex: 0 0 96px;
     width: 96px;
     max-height: 36px;
-
     object-fit: contain;
     object-position: left center;
 }
 
-
 .database-name {
+    min-width: 0;
     font-size: 16px;
     line-height: 1.4;
+    overflow-wrap: anywhere;
 }
-
 
 .database-description {
-    margin: 12px 0 12px;
-
+    margin: 12px 0;
     font-size: 14px;
     line-height: 1.6;
-
     color: #4f5964;
 }
-
 
 .database-meta {
     margin: 0;
 }
 
-
 .database-meta div {
     display: flex;
-
     gap: 10px;
-
     margin-top: 5px;
-
     font-size: 13px;
     line-height: 1.5;
 }
 
-
 .database-meta dt {
     flex: 0 0 32px;
-
     margin: 0;
-
     font-weight: 700;
-
     color: #35414d;
 }
 
-
 .database-meta dd {
+    min-width: 0;
     margin: 0;
-
     color: #67717b;
 }
 
+/* =========================================================
+   Book
+   ========================================================= */
 
-/* =========================
-   학과별 주제가이드 목록(아코디언 타입)
-   ========================= */
+.book-layout {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 0.95fr)
+        minmax(0, 1.05fr);
+    gap: 40px;
+    align-items: start;
+}
+
+.book-left,
+.book-right {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+/* 도서 검색 */
+
+.book-search-form {
+    display: flex;
+    width: 100%;
+}
+
+.book-search-form input[type="text"] {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 14px;
+    border: 1px solid #cfd6dd;
+    border-right: 0;
+    border-radius: 8px 0 0 8px;
+    background: #ffffff;
+    font-size: 14px;
+    outline: none;
+}
+
+.book-search-form input[type="text"]:focus {
+    border-color: #174e78;
+}
+
+.book-search-form button {
+    flex: 0 0 72px;
+    border: 0;
+    border-radius: 0 8px 8px 0;
+    background: #173f63;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.book-search-form button:hover {
+    background: #102f4c;
+}
+
+
+/* 주제별 도서 브라우징 */
+
+.book-subject-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.book-subject-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 14px;
+    border: 1px solid #e4e8ec;
+    border-radius: 9px;
+    background: #f8fafb;
+    color: #174e78;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.book-subject-link:hover {
+    border-color: #b9c8d4;
+    background: #f2f6f8;
+}
+
+.book-subject-code {
+    font-weight: 700;
+}
+
+
+/* 도서 찾는 방법 */
+
+.book-video-wrap {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #e9edf1;
+}
+
+.book-video-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+
+/* 희망도서 */
+
+.book-request-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.book-request-content h2 {
+    width: 100%;
+}
+
+.book-request-content p {
+    margin: 0 0 8px;
+}
+
+
+/* 신착도서 */
+
+.book-new-info {
+    margin-bottom: 18px;
+    padding: 13px 14px;
+    border-radius: 9px;
+    background: #f4f6f8;
+    font-size: 13px;
+    color: #5f6a75;
+}
+
+.new-book-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.new-book-card {
+    min-width: 0;
+    padding: 18px 16px;
+    border: 1px solid #e0e5e9;
+    border-radius: 11px;
+    background: #ffffff;
+}
+
+.new-book-card h3 {
+    margin: 0 0 16px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #202124;
+}
+
+.new-book-card h3 a {
+    color: #174e78;
+    text-decoration: none;
+}
+
+.new-book-card h3 a:hover {
+    text-decoration: underline;
+}
+
+.new-book-meta {
+    margin: 0;
+}
+
+.new-book-meta div {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.new-book-meta dt {
+    flex: 0 0 48px;
+    margin: 0;
+    font-weight: 700;
+    color: #4d5966;
+}
+
+.new-book-meta dd {
+    min-width: 0;
+    margin: 0;
+    color: #7b8490;
+}
+/* =========================================================
+   학과별 주제가이드 목록
+   ========================================================= */
 
 .directory-header {
     margin-bottom: 32px;
@@ -768,10 +742,13 @@ body {
     color: #7b8490;
 }
 
+
+/* 목록 페이지 소개 */
+
 .guide-directory-hero {
     margin-bottom: 24px;
     padding: 28px 30px;
-    background: #fff;
+    background: #ffffff;
     border: 1px solid #e4e7eb;
     border-radius: 14px;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.035);
@@ -788,6 +765,9 @@ body {
     color: #68737e;
 }
 
+
+/* 검색 */
+
 .guide-search-wrap {
     margin-bottom: 22px;
 }
@@ -797,7 +777,7 @@ body {
     padding: 14px 16px;
     border: 1px solid #cfd6dd;
     border-radius: 10px;
-    background: #fff;
+    background: #ffffff;
     font-size: 15px;
     outline: none;
 }
@@ -807,6 +787,9 @@ body {
     box-shadow: 0 0 0 3px rgba(23, 78, 120, 0.08);
 }
 
+
+/* 아코디언 */
+
 .guide-accordion {
     display: flex;
     flex-direction: column;
@@ -815,7 +798,7 @@ body {
 
 .guide-accordion-item {
     overflow: hidden;
-    background: #fff;
+    background: #ffffff;
     border: 1px solid #e1e6eb;
     border-radius: 12px;
 }
@@ -824,10 +807,11 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
     width: 100%;
     padding: 18px 20px;
     border: 0;
-    background: #fff;
+    background: #ffffff;
     color: #263645;
     font-size: 17px;
     font-weight: 700;
@@ -842,6 +826,7 @@ body {
 .guide-accordion-meta {
     display: flex;
     align-items: center;
+    flex-shrink: 0;
     gap: 14px;
     font-size: 13px;
     font-weight: 500;
@@ -876,7 +861,8 @@ body {
 
 .guide-department-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
     gap: 10px;
 }
 
@@ -884,12 +870,13 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    min-width: 0;
     gap: 12px;
     padding: 13px 14px;
     border: 1px solid #e5e9ed;
     border-radius: 9px;
+    background: #ffffff;
     color: #174e78;
-    background: #fff;
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
@@ -908,20 +895,149 @@ body {
 .guide-search-empty {
     margin-top: 24px;
     padding: 24px;
-    background: #fff;
+    background: #ffffff;
     border: 1px solid #e1e6eb;
     border-radius: 12px;
     text-align: center;
     color: #7a838d;
 }
 
-@media (max-width: 820px) {
+
+/* =========================================================
+   반응형
+   ---------------------------------------------------------
+   기본        : 901px 이상
+   태블릿 이하 : 900px 이하
+   모바일      : 768px 이하
+   소형 모바일 : 560px 이하
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   태블릿 이하
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+    /* Home / Journal / Database 모두 1열 */
+    .home-grid,
+    .journal-layout,
+    .database-layout,
+    .book-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .journal-layout,
+    .database-layout {
+        gap: 28px;
+    }
+
+    /* 목록 페이지 학과 2열 */
     .guide-department-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
     }
 }
 
+
+/* ---------------------------------------------------------
+   모바일
+   --------------------------------------------------------- */
+
+@media (max-width: 768px) {
+
+    .site-container {
+        padding: 20px 14px 40px;
+    }
+
+    .site-header {
+        margin-bottom: 26px;
+    }
+
+    .guide-title-wrap {
+        align-items: flex-start;
+        gap: 14px;
+    }
+
+    .guide-logo,
+    .guide-logo img {
+        width: 42px;
+    }
+
+    .guide-title {
+        font-size: 22px;
+    }
+
+    /* 탭을 스크롤시키지 않고 4등분 */
+    .guide-nav {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0;
+        width: 100%;
+        margin-top: 26px;
+        overflow: visible;
+    }
+
+    .guide-nav a {
+        min-width: 0;
+        padding: 12px 2px 14px;
+        font-size: 14px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .page-intro p {
+        font-size: 18px;
+    }
+
+    .content-card,
+    .content-section {
+        padding: 20px;
+    }
+
+    /* 공지 날짜 때문에 폭이 좁아지지 않도록 */
+    .notice-list li {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    /* DB */
+    .database-logo {
+        flex-basis: 82px;
+        width: 82px;
+    }
+
+    .database-title-row {
+        gap: 12px;
+    }
+
+    /* 목록 페이지 */
+    .directory-logo {
+        width: 48px;
+    }
+
+    .directory-brand h1 {
+        font-size: 23px;
+    }
+
+    .guide-directory-hero {
+        padding: 24px;
+    }
+}
+
+
+/* ---------------------------------------------------------
+   소형 모바일
+   --------------------------------------------------------- */
+
 @media (max-width: 560px) {
+
+    /* 저널 내부 카드도 1열 */
+    .journal-card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* 학과 목록도 1열 */
     .guide-department-list {
         grid-template-columns: 1fr;
     }
@@ -937,4 +1053,26 @@ body {
     .guide-accordion-meta {
         gap: 8px;
     }
+
+    /* 매우 좁은 화면에서 탭 글씨 조정 */
+    .guide-nav a {
+        font-size: 13px;
+    }
+
+    /* DB 긴 이름 대응 */
+    .database-name {
+        font-size: 15px;
+    }
+
+    .database-description {
+        font-size: 13px;
+    }
+
+    .database-meta div {
+        font-size: 12px;
+    }
+
+    .new-book-grid {
+    grid-template-columns: 1fr;
+}
 }

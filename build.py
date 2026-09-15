@@ -1,13 +1,16 @@
 import shutil
 from datetime import datetime
 from pathlib import Path
-
 import feedparser
 import gspread
 import yaml
 from google.oauth2.service_account import Credentials
 from jinja2 import Environment, FileSystemLoader
+import os
+from dotenv import load_dotenv
+import xml.etree.ElementTree as ET
 
+import subprocess
 
 BASE_DIR = Path(__file__).parent
 
@@ -16,6 +19,13 @@ credentials_file = BASE_DIR / "credentials" / "google-service-account.json"
 template_dir = BASE_DIR / "templates"
 output_dir = BASE_DIR / "public"
 
+# .env 파일의 환경변수 로드
+load_dotenv(BASE_DIR / ".env")
+
+# 도서관 신착도서 API 키
+library_api_key = os.getenv("LIBRARY_API_KEY")
+if not library_api_key:
+    raise RuntimeError("LIBRARY_API_KEY가 설정되어 있지 않습니다.")
 
 # -------------------------
 # Google Sheets 연결
@@ -89,6 +99,202 @@ def fetch_notices(config):
 
     return notices
 
+# -------------------------
+# 주제별 신착도서
+# -------------------------
+
+def fetch_new_arrivals(api_key, subjects):
+
+    api_url = "https://libapi.donga.ac.kr/dalis/SLIMA.openapi2.SubjectNew.cls"
+
+    books_by_recn = {}
+
+    for subject in subjects:
+        parent_subject = str(
+            subject.get("parent_subject", "")
+        ).strip()
+
+        child_subject = str(
+            subject.get("child_subject", "")
+        ).strip()
+
+        # 대주제 또는 소주제가 비어 있으면 건너뜀
+        if not parent_subject or not child_subject:
+            continue
+
+        params = {
+            "key": api_key,
+            "loc": "DALIS",
+            "version": "1.0",
+            "pNCode": parent_subject,
+            "pWNCode": child_subject,
+        }
+
+        # ----------------------------------------------------
+        # 신착도서 API 호출
+        #
+        # 해당 API는 Python requests/urllib 호출 시
+        # 연결이 강제로 종료되는 문제가 있어,
+        # 실제 정상 호출이 확인된 curl을 사용합니다.
+        # ----------------------------------------------------
+
+        curl_command = shutil.which("curl.exe") or shutil.which("curl")
+
+        if not curl_command:
+            print("신착도서 API 호출 실패: curl을 찾을 수 없습니다.")
+            continue
+
+
+        # ------------------------------------------------------------
+        # curl 설정
+        # ------------------------------------------------------------
+        # API 키를 명령행 인자로 넘기지 않고
+        # curl의 표준입력(stdin)으로 전달합니다.
+        # ------------------------------------------------------------
+
+        curl_config = f"""
+        silent
+        show-error
+        fail
+        location
+        get
+        max-time = 10
+
+        url = "{api_url}"
+
+        data-urlencode = "key={api_key}"
+        data-urlencode = "loc=DALIS"
+        data-urlencode = "version=1.0"
+        data-urlencode = "pNCode={parent_subject}"
+        data-urlencode = "pWNCode={child_subject}"
+        """
+
+
+        try:
+            result = subprocess.run(
+                [
+                    curl_command,
+                    "--config",
+                    "-"
+                ],
+                input=curl_config,
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                timeout=15,
+                check=True,
+            )
+
+            xml_body = result.stdout
+
+        except subprocess.TimeoutExpired:
+            print(
+                f"신착도서 API 시간 초과 "
+                f"({parent_subject} / {child_subject})"
+            )
+            continue
+
+        except subprocess.CalledProcessError as e:
+            print(
+                f"신착도서 API 호출 실패 "
+                f"({parent_subject} / {child_subject}): "
+                f"{e.stderr.strip()}"
+            )
+            continue
+
+        try:
+            root = ET.fromstring(xml_body)
+
+        except ET.ParseError as e:
+            print(
+                f"신착도서 XML 파싱 실패 "
+                f"({parent_subject} / {child_subject}): {e}"
+            )
+            continue
+
+        # API 결과코드 확인
+        result_code = root.findtext(
+            "./head/resultCode",
+            default="",
+        ).strip()
+
+        if result_code and result_code.upper() != "OK":
+            print(
+                f"신착도서 API 오류 "
+                f"({parent_subject} / {child_subject}): "
+                f"{result_code}"
+            )
+            continue
+
+        # metadata/item 반복
+        for item in root.findall("./metadata/item"):
+
+            recn = (
+                item.findtext("recn", default="")
+                or ""
+            ).strip()
+
+            if not recn:
+                continue
+
+            # 여러 분류에서 같은 책이 조회될 수 있으므로
+            # recn 기준으로 중복 제거
+            if recn in books_by_recn:
+                continue
+
+            books_by_recn[recn] = {
+                "recn": recn,
+                "title": (
+                    item.findtext(
+                        "stitle",
+                        default=""
+                    )
+                    or ""
+                ).strip(),
+
+                "author": (
+                    item.findtext(
+                        "author",
+                        default=""
+                    )
+                    or ""
+                ).strip(),
+
+                "publisher": (
+                    item.findtext(
+                        "publisher",
+                        default=""
+                    )
+                    or ""
+                ).strip(),
+
+                "pubyear": (
+                    item.findtext(
+                        "pubyear",
+                        default=""
+                    )
+                    or ""
+                ).strip(),
+
+                "url": (
+                    "https://library.donga.ac.kr/"
+                    "resource/library-catalog/"
+                    f"?app=mirtech&mod=detail&record_id={recn}"
+                ),
+            }
+
+    books = list(books_by_recn.values())
+
+    # 출판년도 최신순
+    books.sort(
+        key=lambda book: int(book["pubyear"])
+        if str(book["pubyear"]).isdigit()
+        else 0,
+        reverse=True,
+    )
+
+    # 최대 9권
+    return books[:9]
 
 # -------------------------
 # 사이트 설정 읽기
@@ -109,41 +315,23 @@ spreadsheet = get_spreadsheet()
 # 각 시트 읽기
 # -------------------------
 
-departments = load_sheet(
-    spreadsheet,
-    "departments"
-)
+departments = load_sheet(spreadsheet, "departments")
 
-colleges = load_sheet(
-    spreadsheet,
-    "colleges"
-)
+colleges = load_sheet(spreadsheet, "colleges")
 
-librarians = load_sheet(
-    spreadsheet,
-    "librarians"
-)
+librarians = load_sheet(spreadsheet, "librarians")
 
-journals = load_sheet(
-    spreadsheet,
-    "journals"
-)
+journals = load_sheet(spreadsheet, "journals")
 
-department_journals = load_sheet(
-    spreadsheet,
-    "department_journals"
-)
+department_journals = load_sheet(spreadsheet, "department_journals")
 
-databases = load_sheet(
-    spreadsheet,
-    "databases"
-)
+databases = load_sheet(spreadsheet, "databases")
 
-department_databases = load_sheet(
-    spreadsheet,
-    "department_databases"
-)
+department_databases = load_sheet(spreadsheet, "department_databases")
 
+book_subjects = load_sheet(spreadsheet, "book_subjects")
+
+new_arrival_subjects = load_sheet(spreadsheet, "new_arrival_subjects")
 
 # ============================================================
 # 학과별 주제가이드 목록 페이지용 데이터 구성
@@ -241,7 +429,6 @@ database_by_id = {
 # -------------------------
 
 notices = fetch_notices(config)
-
 
 # -------------------------
 # public 초기화
@@ -393,6 +580,49 @@ for department in departments:
 
     department_id = department["department_id"]
 
+    # ============================================================
+    # 학과별 신착도서 분류 조회
+    # ============================================================
+    department_new_arrival_subjects = [
+        row
+        for row in new_arrival_subjects
+        if row.get("department_id") == department_id
+    ]
+
+
+    # ============================================================
+    # 신착도서 API 조회
+    # ============================================================
+
+    new_arrivals = fetch_new_arrivals(
+        library_api_key,
+        department_new_arrival_subjects,
+    )
+
+    # ============================================================
+    # 학과별 주제별 도서 브라우징 데이터 구성
+    # ------------------------------------------------------------
+    department_book_subjects = [
+        row
+        for row in book_subjects
+        if row.get("department_id") == department_id
+    ]
+
+    # ------------------------------------------------------------
+    # call_number 기준으로 정렬
+    # ------------------------------------------------------------
+
+    def call_number_sort_key(row):
+        try:
+            return float(row.get("call_number", 999999))
+        except (TypeError, ValueError):
+            return 999999
+
+
+    department_book_subjects.sort(
+        key=call_number_sort_key
+    )
+
  # 저널
     department_journal_rows = [
         row
@@ -490,6 +720,10 @@ for department in departments:
         "major_databases": major_databases,
         "domestic_databases": domestic_databases,
         "international_databases": international_databases,
+
+        "book_subjects": department_book_subjects,
+
+        "new_arrivals": new_arrivals,
 
         # 기존 base.html과 호환하기 위해 유지
         "department_name": department.get(

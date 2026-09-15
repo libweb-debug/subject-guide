@@ -26,12 +26,12 @@
                     <h1 class="guide-title">한국어문학과</h1>
 
                     <div class="breadcrumb">
-                        학과별 주제가이드
+                        <a href="/guide/">학과별 주제가이드</a>
                         <span>/</span>
                         한국어문학과
                         <span>/</span>
                         
-도서
+Book
 
                     </div>
                 </div>
@@ -65,10 +65,598 @@ active
 
         <main class="main-content">
             
-<section class="content-section">
-    <h2>도서</h2>
-    <p>도서 페이지 테스트입니다.</p>
-</section>
+
+<div class="page-intro">
+    <p>
+        한국어문학과 분야의 전공도서와 참고도서를 안내합니다.
+    </p>
+</div>
+
+<div class="book-layout">
+
+    <!-- =====================================================
+         왼쪽 영역
+         ===================================================== -->
+    <div class="book-left">
+
+        <!-- 도서 검색 -->
+        <section class="content-card book-search-card">
+
+            <h2>도서 검색</h2>
+
+            <p class="card-description">
+                도서명, 저자명, 키워드 등을 입력하세요.
+            </p>
+
+            <form
+                class="book-search-form"
+                action="https://library.donga.ac.kr/resource/all/"
+                method="get"
+                target="_blank"
+            >
+                <input
+                    type="text"
+                    name="query"
+                    placeholder="도서명, 저자명, 키워드 등을 입력하세요"
+                    aria-label="도서 검색어"
+                    required
+                >
+
+                <button type="submit">
+                    검색
+                </button>
+            </form>
+
+        </section>
+
+
+        <!-- 주제별 도서 브라우징 -->
+        <section class="content-card">
+
+            <h2>주제별 도서 브라우징</h2>
+
+            <div class="book-subject-list">
+
+            
+
+            <a
+                href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=list&st=0&field%5B%5D=N&query%5B%5D=710&collect%5B%5D=ALL&ddc%5B%5D=ALL&lang=ALL&record_per_page=10&orderby=O&order=desc&material%5B%5D=DB"
+                class="book-subject-link"
+                target="_blank"
+                rel="noopener"
+            >
+                <span class="book-subject-code">
+                    710
+                </span>
+
+                <span>
+                    한국어
+                </span>
+            </a>
+
+            
+
+            <a
+                href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=list&st=0&field%5B%5D=N&query%5B%5D=811&collect%5B%5D=ALL&ddc%5B%5D=ALL&lang=ALL&record_per_page=10&orderby=O&order=desc&material%5B%5D=DB"
+                class="book-subject-link"
+                target="_blank"
+                rel="noopener"
+            >
+                <span class="book-subject-code">
+                    811
+                </span>
+
+                <span>
+                    한국시
+                </span>
+            </a>
+
+            
+
+            <a
+                href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=list&st=0&field%5B%5D=N&query%5B%5D=813&collect%5B%5D=ALL&ddc%5B%5D=ALL&lang=ALL&record_per_page=10&orderby=O&order=desc&material%5B%5D=DB"
+                class="book-subject-link"
+                target="_blank"
+                rel="noopener"
+            >
+                <span class="book-subject-code">
+                    813
+                </span>
+
+                <span>
+                    한국소설
+                </span>
+            </a>
+
+            
+
+            <a
+                href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=list&st=0&field%5B%5D=N&query%5B%5D=818&collect%5B%5D=ALL&ddc%5B%5D=ALL&lang=ALL&record_per_page=10&orderby=O&order=desc&material%5B%5D=DB"
+                class="book-subject-link"
+                target="_blank"
+                rel="noopener"
+            >
+                <span class="book-subject-code">
+                    818
+                </span>
+
+                <span>
+                    기타 한국문학
+                </span>
+            </a>
+
+            
+
+        </div>
+
+        </section>
+
+
+        <!-- 도서 찾는 방법 -->
+        <section class="content-card">
+
+            <h2>도서 찾는 방법</h2>
+
+            <div class="book-video-wrap">
+
+                <!--
+                    실제 YouTube 영상 주소는 이후 확정해서 넣으면 됩니다.
+                    현재는 기존 시연용 구조를 위한 자리입니다.
+                -->
+
+                <iframe
+                    src="https://www.youtube.com/embed/z4K9SJUqmvY"
+                    title="도서 찾는 방법"
+                    allowfullscreen
+                ></iframe>
+
+            </div>
+
+        </section>
+
+
+        <!-- 희망도서 신청 -->
+        <section class="content-card book-request-card">
+
+            <div class="book-request-content">
+
+                <div>
+                    <h2>원하는 책이 없나요?</h2>
+
+                    <p>
+                        도서관에 필요한 자료가 없다면 희망도서를 신청할 수 있습니다.
+                    </p>
+                </div>
+
+                <a
+                    href="https://library.donga.ac.kr/libaray-services/using-materials/purchase-request/"
+                    class="primary-button"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    희망도서 신청하기
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- =====================================================
+         오른쪽 영역
+         ===================================================== -->
+    <div class="book-right">
+
+        <section class="content-card">
+
+            <h2>신착도서</h2>
+
+            <div class="book-new-info">
+                해당 학과 관련 분야의 최근 입수 도서입니다.
+            </div>
+
+
+           <div class="new-book-grid">
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=945962"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        1로 서기 :어떤 순간에도 나를 책임지는 '1인분의 삶'을 위하여
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>임홍택,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>디자인하우스</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946320"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        2026년 제1회 김학철문학상 수상작품집
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>황정은,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>아시아</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=945454"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        (2026 제 13회)교보문고 스토리대상 :단편 수상작품집 2026
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>이선화,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>북다</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=945963"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        408 :이인열 장편소설
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>이인열,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>온프북스</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946164"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        IB 전쟁 :김승혁 소설
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>김승혁,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>생각나눔</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=945470"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        The arch :곡선으로 지은 사랑 :김광일 장편소설
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>김광일,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>바른북스</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946329"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        개성공단 :한유림 장편소설
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>한유림,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>이프</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=945808"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        거울은 먼저 웃지 않는다 :신승철 장편소설
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>신승철,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>잉걸북스</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=945474"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        검은 백조 살인 사건
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>노원,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>포문</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+        </div>
+
+        </section>
+
+    </div>
+
+</div>
+
 
         </main>
 

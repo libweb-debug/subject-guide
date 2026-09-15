@@ -26,12 +26,12 @@
                     <h1 class="guide-title">경영학과</h1>
 
                     <div class="breadcrumb">
-                        학과별 주제가이드
+                        <a href="/guide/">학과별 주제가이드</a>
                         <span>/</span>
                         경영학과
                         <span>/</span>
                         
-도서
+Book
 
                     </div>
                 </div>
@@ -65,10 +65,581 @@ active
 
         <main class="main-content">
             
-<section class="content-section">
-    <h2>도서</h2>
-    <p>도서 페이지 테스트입니다.</p>
-</section>
+
+<div class="page-intro">
+    <p>
+        경영학과 분야의 전공도서와 참고도서를 안내합니다.
+    </p>
+</div>
+
+<div class="book-layout">
+
+    <!-- =====================================================
+         왼쪽 영역
+         ===================================================== -->
+    <div class="book-left">
+
+        <!-- 도서 검색 -->
+        <section class="content-card book-search-card">
+
+            <h2>도서 검색</h2>
+
+            <p class="card-description">
+                도서명, 저자명, 키워드 등을 입력하세요.
+            </p>
+
+            <form
+                class="book-search-form"
+                action="https://library.donga.ac.kr/resource/all/"
+                method="get"
+                target="_blank"
+            >
+                <input
+                    type="text"
+                    name="query"
+                    placeholder="도서명, 저자명, 키워드 등을 입력하세요"
+                    aria-label="도서 검색어"
+                    required
+                >
+
+                <button type="submit">
+                    검색
+                </button>
+            </form>
+
+        </section>
+
+
+        <!-- 주제별 도서 브라우징 -->
+        <section class="content-card">
+
+            <h2>주제별 도서 브라우징</h2>
+
+            <div class="book-subject-list">
+
+            
+
+            <a
+                href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=list&st=0&field%5B%5D=N&query%5B%5D=325&collect%5B%5D=ALL&ddc%5B%5D=ALL&lang=ALL&record_per_page=10&orderby=O&order=desc&material%5B%5D=DB"
+                class="book-subject-link"
+                target="_blank"
+                rel="noopener"
+            >
+                <span class="book-subject-code">
+                    325
+                </span>
+
+                <span>
+                    경영관리
+                </span>
+            </a>
+
+            
+
+            <a
+                href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=list&st=0&field%5B%5D=N&query%5B%5D=325.1&collect%5B%5D=ALL&ddc%5B%5D=ALL&lang=ALL&record_per_page=10&orderby=O&order=desc&material%5B%5D=DB"
+                class="book-subject-link"
+                target="_blank"
+                rel="noopener"
+            >
+                <span class="book-subject-code">
+                    325.1
+                </span>
+
+                <span>
+                    경영정책
+                </span>
+            </a>
+
+            
+
+            <a
+                href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=list&st=0&field%5B%5D=N&query%5B%5D=325.8&collect%5B%5D=ALL&ddc%5B%5D=ALL&lang=ALL&record_per_page=10&orderby=O&order=desc&material%5B%5D=DB"
+                class="book-subject-link"
+                target="_blank"
+                rel="noopener"
+            >
+                <span class="book-subject-code">
+                    325.8
+                </span>
+
+                <span>
+                    재무관리
+                </span>
+            </a>
+
+            
+
+        </div>
+
+        </section>
+
+
+        <!-- 도서 찾는 방법 -->
+        <section class="content-card">
+
+            <h2>도서 찾는 방법</h2>
+
+            <div class="book-video-wrap">
+
+                <!--
+                    실제 YouTube 영상 주소는 이후 확정해서 넣으면 됩니다.
+                    현재는 기존 시연용 구조를 위한 자리입니다.
+                -->
+
+                <iframe
+                    src="https://www.youtube.com/embed/z4K9SJUqmvY"
+                    title="도서 찾는 방법"
+                    allowfullscreen
+                ></iframe>
+
+            </div>
+
+        </section>
+
+
+        <!-- 희망도서 신청 -->
+        <section class="content-card book-request-card">
+
+            <div class="book-request-content">
+
+                <div>
+                    <h2>원하는 책이 없나요?</h2>
+
+                    <p>
+                        도서관에 필요한 자료가 없다면 희망도서를 신청할 수 있습니다.
+                    </p>
+                </div>
+
+                <a
+                    href="https://library.donga.ac.kr/libaray-services/using-materials/purchase-request/"
+                    class="primary-button"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    희망도서 신청하기
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <!-- =====================================================
+         오른쪽 영역
+         ===================================================== -->
+    <div class="book-right">
+
+        <section class="content-card">
+
+            <h2>신착도서</h2>
+
+            <div class="book-new-info">
+                해당 학과 관련 분야의 최근 입수 도서입니다.
+            </div>
+
+
+           <div class="new-book-grid">
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946575"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        (2026) 시대에듀 서울특별시 공공기관 통합채용 :NCS+최신상식+일반상식+무료동영상
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>시대적성검사연구소,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>시대에듀</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=947026"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        (2026 최신판) 에듀윌 공기업 2주완성 NCS 통합 기본서
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>에듀윌.취업연구소,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>에듀윌</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946601"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        Accounting principles
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>Weygandt, Jerry J.</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>Wiley</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946588"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        AI 감각 수업 :도구가 바뀌어도 무너지지 않는 사람의 기준
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>나도움,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>책스미스</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946162"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        (AI 디지털 시대의) 광고기획과 전략
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>박종오,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>북넷</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=945798"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        AI 시대, 불가능한 협상은 없다 :어떤 경우에도 통하는 협상의 공식과 AI 활용
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>남학현,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>라의눈</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946606"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        AI 시대, 생각은 어떻게 무기가 되는가 :최고의 질문으로 결과를 바꾸는 문제해결의 기술
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>변창우,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>세이코리아</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946323"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        AI 시대 지역방송의 미래 :뉴스·플랫폼·공론장의 재구성
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>홍경수,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>모시는사람들</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+            <article class="new-book-card">
+
+                
+                <h3>
+                    <a
+                        href="https://library.donga.ac.kr/resource/library-catalog/?app=mirtech&mod=detail&record_id=946608"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        AI 시대, 취업 전략서 :AI 평가를 뛰어넘는 4인의 전문가 밀착 채용 가이드
+                    </a>
+                </h3>
+                
+
+                <dl class="new-book-meta">
+
+                    
+                    <div>
+                        <dt>저자</dt>
+                        <dd>전은지,</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판사</dt>
+                        <dd>브레인레오</dd>
+                    </div>
+                    
+
+                    
+                    <div>
+                        <dt>출판년도</dt>
+                        <dd>2026</dd>
+                    </div>
+                    
+
+                </dl>
+
+            </article>
+
+            
+
+        </div>
+
+        </section>
+
+    </div>
+
+</div>
+
 
         </main>
 
