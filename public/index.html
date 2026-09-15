@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>동아대학교 학과별 주제가이드</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+<div class="site-container">
+
+    <header class="directory-header">
+        <div class="directory-brand">
+            <img
+                src="/static/images/logo.png"
+                alt="동아대학교"
+                class="directory-logo"
+            >
+
+            <div>
+                <h1>학과별 주제가이드</h1>
+                <p>동아대학교 도서관</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="guide-directory-hero">
+            <h2>전공별 학술정보를 확인하세요</h2>
+            <p>
+                단과대학을 선택하거나 학과명을 검색하여
+                해당 학과의 주제가이드로 이동할 수 있습니다.
+            </p>
+        </section>
+
+        <div class="guide-search-wrap">
+            <input
+                type="search"
+                id="guide-search"
+                placeholder="학과명을 입력하세요"
+                aria-label="학과 검색"
+            >
+        </div>
+
+        <div class="guide-accordion">
+
+            
+
+            <section class="guide-accordion-item">
+
+                <button
+                    type="button"
+                    class="guide-accordion-button"
+                    aria-expanded="false"
+                >
+                    <span>경영대학</span>
+
+                    <span class="guide-accordion-meta">
+                        1개 학과
+                        <span class="guide-accordion-icon">+</span>
+                    </span>
+                </button>
+
+                <div class="guide-accordion-panel">
+
+                    <div class="guide-department-list">
+
+                        
+
+                        <a
+                            class="guide-department-link"
+                            href="/guide/business-administration/"
+                            data-department-name="경영학과"
+                        >
+                            <span>
+                                경영학과
+                            </span>
+
+                            <span class="guide-department-arrow">
+                                →
+                            </span>
+                        </a>
+
+                        
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            
+
+            <section class="guide-accordion-item">
+
+                <button
+                    type="button"
+                    class="guide-accordion-button"
+                    aria-expanded="false"
+                >
+                    <span>인문과학대학</span>
+
+                    <span class="guide-accordion-meta">
+                        1개 학과
+                        <span class="guide-accordion-icon">+</span>
+                    </span>
+                </button>
+
+                <div class="guide-accordion-panel">
+
+                    <div class="guide-department-list">
+
+                        
+
+                        <a
+                            class="guide-department-link"
+                            href="/guide/korean-language-literature/"
+                            data-department-name="한국어문학과"
+                        >
+                            <span>
+                                한국어문학과
+                            </span>
+
+                            <span class="guide-department-arrow">
+                                →
+                            </span>
+                        </a>
+
+                        
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            
+
+        </div>
+
+        <p
+            id="guide-search-empty"
+            class="guide-search-empty"
+            hidden
+        >
+            검색 결과가 없습니다.
+        </p>
+
+    </main>
+
+</div>
+
+<script src="/static/js/guide-list.js"></script>
+
+</body>
+</html>

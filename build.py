@@ -143,6 +143,72 @@ department_databases = load_sheet(
     spreadsheet,
     "department_databases"
 )
+
+
+# ============================================================
+# 학과별 주제가이드 목록 페이지용 데이터 구성
+# ------------------------------------------------------------
+# Google Sheets의 colleges, departments 데이터를 이용해서
+# "단과대학별 학과 목록" 형태로 묶어줍니다.
+# 이 college_groups 데이터는 나중에 guide-list.html에서 사용합니다.
+# ============================================================
+
+college_groups = []
+
+
+# ------------------------------------------------------------
+# active가 Y인 단과대학만 가져옵니다.
+# sort_order 값이 작은 단과대학부터 화면에 표시하기 위해 정렬합니다.
+# ------------------------------------------------------------
+
+active_colleges = [
+    college
+    for college in colleges
+    if str(college.get("active", "")).upper() == "Y"
+]
+
+active_colleges.sort(
+    key=lambda college: int(
+        college.get("sort_order", 9999)
+    )
+)
+
+
+# ------------------------------------------------------------
+# 각 단과대학에 속한 학과들을 찾아서 묶습니다.
+# ------------------------------------------------------------
+
+for college in active_colleges:
+
+    # 현재 단과대학의 college_id
+    current_college_id = college.get("college_id")
+
+    # 현재 단과대학에 속하면서 active=Y인 학과만 선택
+    college_departments = [
+        department
+        for department in departments
+        if (
+            department.get("college_id") == current_college_id
+            and str(department.get("active", "")).upper() == "Y"
+        )
+    ]
+
+    # 학과도 sort_order 순으로 정렬
+    college_departments.sort(
+        key=lambda department: int(
+            department.get("sort_order", 9999)
+        )
+    )
+
+    # 실제 학과가 있는 단과대학만 목록에 추가
+    if college_departments:
+        college_groups.append(
+            {
+                "college_id": current_college_id,
+                "college_name": college.get("college_name", ""),
+                "departments": college_departments,
+            }
+        )
 # -------------------------
 # ID로 빠르게 찾을 수 있도록 변환
 # -------------------------
@@ -231,6 +297,64 @@ pages = [
         "folder": "database",
     },
 ]
+
+# ============================================================
+# 학과별 주제가이드 전체 목록 페이지 생성
+# ------------------------------------------------------------
+
+# 목록 페이지용 템플릿 불러오기
+guide_list_template = env.get_template(
+    "guide-list.html"
+)
+
+# college_groups 데이터를 템플릿에 전달해서 HTML 생성
+guide_list_html = guide_list_template.render(
+    college_groups=college_groups,
+    site=config,
+)
+
+
+# ------------------------------------------------------------
+# 1. 사이트 루트용 페이지 생성
+#    결과: public/index.html
+#
+#    접속 주소:
+#    https://dlibguide.netlify.app/
+# ------------------------------------------------------------
+
+root_index_file = output_dir / "index.html"
+
+root_index_file.write_text(
+    guide_list_html,
+    encoding="utf-8",
+)
+
+
+# ------------------------------------------------------------
+# 2. /guide/ 경로용 페이지 생성
+#    결과: public/guide/index.html
+#
+#    접속 주소:
+#    https://dlibguide.netlify.app/guide/
+# ------------------------------------------------------------
+
+guide_index_file = (
+    output_dir
+    / "guide"
+    / "index.html"
+)
+
+# guide 폴더가 없으면 생성
+guide_index_file.parent.mkdir(
+    parents=True,
+    exist_ok=True,
+)
+
+# HTML 파일 저장
+guide_index_file.write_text(
+    guide_list_html,
+    encoding="utf-8",
+)
 
 
 # -------------------------
