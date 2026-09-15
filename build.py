@@ -269,6 +269,7 @@ for department in departments:
 
     department_id = department["department_id"]
 
+ # 저널
     department_journal_rows = [
         row
         for row in department_journals
@@ -304,6 +305,7 @@ for department in departments:
             if journal.get("region") == "국외"
         ]
 
+ # DB
     department_database_rows = [
         row
         for row in department_databases
@@ -329,12 +331,8 @@ for department in departments:
 
             item = dict(database)
 
-            item["category"] = relation.get(
-                "category",
-                ""
-            )
-
-    department_database_list.append(item)   
+            item["category"] = relation.get("category","")
+            department_database_list.append(item)   
 
     major_databases = [
     db
