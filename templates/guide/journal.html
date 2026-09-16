@@ -90,28 +90,41 @@ active
             <div class="journal-card-grid">
 
                 {% for journal in domestic_journals %}
-
-                <a
-                    class="journal-card"
-                    href="{{ journal.url }}"
-                    target="_blank"
-                    rel="noopener"
-                >
+                <div class="journal-card">
 
                     <div class="journal-card-header">
-
                         <h3>
-                            {{ journal.title }}
+                            {% if journal.url %}
+                            <a
+                                class="journal-title-link"
+                                href="{{ journal.url }}"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                {{ journal.title }}
+                            </a>
+                            {% else %}
+                                {{ journal.title }}
+                            {% endif %}
                         </h3>
 
                         {% if journal.kci_registration %}
-                        <span class="kci-badge">
-                            {{ journal.kci_registration }}
-                        </span>
+                            {% if journal.kci_url %}
+                            <a
+                                class="kci-badge"
+                                href="{{ journal.kci_url }}"
+                                target="_blank"
+                                rel="noopener"
+                            >
+                                KCI
+                            </a>
+                            {% else %}
+                            <span class="kci-badge">
+                                KCI
+                            </span>
+                            {% endif %}
                         {% endif %}
-
                     </div>
-
 
                     {% if journal.publisher %}
                     <p class="journal-publisher">
@@ -119,13 +132,19 @@ active
                     </p>
                     {% endif %}
 
-
                     <div class="journal-meta">
 
                         {% if journal.issn %}
                         <span>
                             <strong>ISSN</strong>
                             {{ journal.issn }}
+                        </span>
+                        {% endif %}
+
+                        {% if journal.kci_registration %}
+                        <span>
+                            <strong>등재구분</strong>
+                            {{ journal.kci_registration }}
                         </span>
                         {% endif %}
 
@@ -141,14 +160,11 @@ active
 
                     </div>
 
-                </a>
-
+                </div>
                 {% else %}
-
                 <p class="empty-message">
                     등록된 국내 주요 저널이 없습니다.
                 </p>
-
                 {% endfor %}
 
             </div>

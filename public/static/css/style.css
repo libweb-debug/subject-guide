@@ -902,6 +902,19 @@ body {
     color: #7a838d;
 }
 
+.journal-title-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.journal-title-link:hover {
+    color: #174e78;
+    text-decoration: underline;
+}
+
+.kci-badge {
+    text-decoration: none;
+}
 
 /* =========================================================
    반응형

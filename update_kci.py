@@ -127,6 +127,7 @@ def get_kci_info(
     title,
     issn,
     saved_kci_journal_id="",
+    saved_kci_url="",
 ):
     title = str(title or "").strip()
     target_issn = normalize_issn(issn)
@@ -135,17 +136,19 @@ def get_kci_info(
         saved_kci_journal_id or ""
     ).strip()
 
+    saved_kci_url = str(
+        saved_kci_url or ""
+    ).strip()
+
     if not title or not target_issn:
         return None
 
-        # --------------------------------------------------
-    # 1. 기존 kci_journal_id가 있으면
-    #    citation 검색을 생략하고 바로 상세조회
+    # --------------------------------------------------
+    # 1. journal-id와 KCI URL이 모두 저장되어 있으면
+    #    citation 검색 없이 citationDetail만 조회
     # --------------------------------------------------
 
-    if saved_kci_journal_id:
-
-        detail_root = None
+    if saved_kci_journal_id and saved_kci_url:
 
         try:
             detail_root = get_kci_detail(
@@ -158,12 +161,10 @@ def get_kci_info(
         ):
             print(
                 f"KCI 저장 ID 조회 실패 → 재검색: "
-                f"{title} / "
-                f"{saved_kci_journal_id}"
+                f"{title} / {saved_kci_journal_id}"
             )
 
-        if detail_root is not None:
-
+        else:
             detail_journal = detail_root.find(
                 ".//outputData/record/journalInfo"
             )
@@ -222,9 +223,8 @@ def get_kci_info(
                         "kci_if": detail_if,
                         "kci_registration": registration,
                         "kci_year": KCI_YEAR,
-                        "kci_journal_id": (
-                            saved_kci_journal_id
-                        ),
+                        "kci_journal_id": saved_kci_journal_id,
+                        "kci_url": saved_kci_url,
                         "kci_eissn": kci_eissn,
                         "kci_updated_at": (
                             datetime.now()
@@ -232,15 +232,13 @@ def get_kci_info(
                         ),
                     }
 
-        # 저장된 ID가 잘못됐거나 ISSN이 맞지 않으면
-        # 아래 citation 검색으로 내려가서 ID를 다시 찾음
         print(
             f"KCI journal-id 재검색: {title}"
         )
 
     # --------------------------------------------------
-    # 2. kci_journal_id가 없거나
-    #    기존 ID가 맞지 않으면 저널명으로 검색
+    # 2. journal-id가 없거나
+    #    kci_url이 아직 없으면 citation 검색
     # --------------------------------------------------
 
     try:
@@ -271,6 +269,12 @@ def get_kci_info(
 
         if not kci_journal_id:
             continue
+
+        # citation 응답의 KCI 저널 URL
+        kci_url = (
+            journal_info.findtext("url")
+            or ""
+        ).strip()
 
         citation_info = record.find(
             "citationInfo"
@@ -320,6 +324,7 @@ def get_kci_info(
             or ""
         ).strip()
 
+        # 우리 시트 ISSN과 KCI ISSN/eISSN 최종 검증
         issn_match = (
             target_issn
             == normalize_issn(kci_issn)
@@ -369,6 +374,7 @@ def get_kci_info(
             "kci_registration": registration,
             "kci_year": KCI_YEAR,
             "kci_journal_id": kci_journal_id,
+            "kci_url": kci_url,
             "kci_eissn": kci_eissn,
             "kci_updated_at": (
                 datetime.now()
@@ -410,6 +416,7 @@ def main():
         "kci_registration",
         "kci_year",
         "kci_journal_id",
+        "kci_url",
         "kci_eissn",
         "kci_updated_at",
     ]
@@ -464,6 +471,10 @@ def main():
                 "kci_journal_id",
                 "",
             ),
+            saved_kci_url=row.get(
+                "kci_url",
+                "",
+            ),
         )
 
         if not kci_info:
@@ -483,6 +494,9 @@ def main():
             "kci_year": kci_info["kci_year"],
             "kci_journal_id": (
                 kci_info["kci_journal_id"]
+            ),
+            "kci_url": (
+                kci_info["kci_url"]
             ),
             "kci_eissn": (
                 kci_info["kci_eissn"]
